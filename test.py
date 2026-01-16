@@ -1,5 +1,5 @@
 import struct
-import time
+import argparse
 import serial
 import serial.tools.list_ports
 from PIL import Image, ImageDraw, ImageFont
@@ -37,8 +37,8 @@ CMD_IMG_END = PREAMBLE + b'\x06\x00\x00\x00'
 WIDTH = 960
 HEIGHT = 376
 TOTAL_BYTES = WIDTH * HEIGHT * 2  # 721,920 bytes
-CHUNK_SIZE = 47 #!!!!!!!15,360 bytes
-CHUNK_COUNT = TOTAL_BYTES // CHUNK_SIZE
+CHUNK_SIZE = 47
+CHUNK_COUNT = TOTAL_BYTES // CHUNK_SIZE #15,360 bytes
 
 def find_serial_port():
     """
@@ -137,17 +137,21 @@ def send_image(ser, image_path):
 
     img = Image.open(image_path)
     img_data = _image_to_rgb565(img)
-    send_image_data(img_data)
+    send_image_data(ser,img_data)
 
 
-def send_text(ser):
+def send_text(ser,text):
     #try:
     #    image = Image.open("input_image.jpg")
     #except FileNotFoundError:
     #    # Create a new image if the file isn't found for the example to work
     #    image = Image.new("RGB", (WIDTH, HEIGHT), color = 'black')
 
-    image = Image.new("RGB", (WIDTH, HEIGHT), color = 'black')
+    color = "white"
+    color_bg = "black"
+    position = (50, 50) 
+
+    image = Image.new("RGB", (WIDTH, HEIGHT), color=color_bg)
 
     draw = ImageDraw.Draw(image)
 
@@ -156,15 +160,33 @@ def send_text(ser):
     except IOError:
         font = None # Use default font if not available
 
-    text = "CPU Temp: 99C\nGPU Temp: 99C"
-    color = (255, 255, 255)
-    position = (50, 50) 
     draw.text(position, text, fill=color, font=font)
+
+    #draw.text(position, "CPU Temp:", fill="white", font=font)
+    #position = (position[0] + draw.textlength("CPU Temp:", font=font) , position[1])
+    #draw.text(position, "99C", fill="red", font=font)
+    #position = (50 , position[1] + 48)
+    #draw.text(position, "GPU Temp:", fill="white", font=font)
+    #position = (position[0] + draw.textlength("GPU Temp:", font=font) , position[1])
+    #draw.text(position, "99C", fill="red", font=font)
 
     img_data = _image_to_rgb565(image)
     send_image_data(ser,img_data)
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description="Basic controls for Aoostar GEM12 PRO MAX or WTR MAX screens")
+
+    parser.add_argument("-e", "--enable", action="store_true",
+                        help="Enables screen")
+    parser.add_argument("-d", "--disable", action="store_true",
+                        help="Disables screen")
+    parser.add_argument("-i", "--image", default="",
+                        help="Sends image to be displayed")
+    parser.add_argument("-t", "--text", default="",
+                        help="Sends text to be displayed")
+
+    args = parser.parse_args()
 
     found_port = find_serial_port()
 
@@ -180,9 +202,22 @@ if __name__ == '__main__':
                         bytesize=serial.EIGHTBITS,
                         timeout=2.0)
     
-    lcd_on(ser)
+    #lcd_on(ser)
     #send_image(ser, "test_image.png")
-    send_text(ser)
+    #send_text(ser)
     # lcd_off(ser)
-    
+
+    if args.enable:
+        lcd_on(ser)
+    elif args.disable:
+        lcd_off(ser)
+
+    if not args.disable:
+        if args.image != "":
+            send_image(ser, args.image)
+        elif args.text != "":
+            send_text(ser, args.text)
+    else:
+        print("Won't send data with a screen off command")
+
     ser.close()
