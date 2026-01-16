@@ -123,9 +123,10 @@ def send_image(ser, image):
         ser.write(packet)
         check_ack(ser, f"chunk_{i}")
         
-        print(f"\rProgress: {i+1}/{CHUNK_COUNT}", end='')
+        #print(f"\rProgress: {i+1}/{CHUNK_COUNT}", end='')
 
-    print("\nAll chunks sent.")
+    #print("\nAll chunks sent.")
+    print("All chunks sent.")
 
     print("Sending End Command...")
     ser.write(CMD_IMG_END)
