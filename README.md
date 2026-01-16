@@ -1,4 +1,4 @@
-AOOSTAR GEM12 PRO MAX / GEM12+ PRO / WTR MAX Screen Control
+# AOOSTAR GEM12 PRO MAX / GEM12+ PRO / WTR MAX Screen Control
 
 The code provided is based on the reverse engineering published by zehnm/aoostar-rs.
 
