@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+
 from hwinfo_sharedmem import HWiNFOReader
 
 def getHWiNFOData():
@@ -41,6 +43,8 @@ def convertHWiNFODataToAoostarCompatible(snapshot):
     ssd_count_smart = 0
     ssd_count_drive = 0
 
+    aoostar_data["DATE_m_d_h_m_2"] = datetime.now().strftime("%b %d/%H/%M") #Time differs from snapshot
+
     for r in snapshot['readings']:
 
         if r['label_orig'] == "CPU Core" :
@@ -62,12 +66,10 @@ def convertHWiNFODataToAoostarCompatible(snapshot):
             aoostar_data["gpu_temperature"] = max(aoostar_data["gpu_temperature"],r['value']) #any gpu?
 
         elif r['label_orig'] == "Current UP rate" :
-            aoostar_data["net_upload_speed"] = r['value']
-            aoostar_data["net_upload_speed_unit"] = r['unit']
+            aoostar_data["net_upload_speed"] = str(round(r['value'])) + " " + str(r['unit'])
 
         elif r['label_orig'] == "Current DL rate" :
-            aoostar_data["net_download_speed"] = r['value']
-            aoostar_data["net_download_speed_unit"] = r['unit']
+            aoostar_data["net_download_speed"] = str(round(r['value'])) + " " + str(r['unit'])
 
         elif "Temperature " in r['label_orig'] :
             aoostar_data["motherboard_temperature"] = max(aoostar_data["motherboard_temperature"], r['value'])

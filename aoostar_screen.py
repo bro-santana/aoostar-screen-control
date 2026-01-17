@@ -196,12 +196,28 @@ def send_aoostar_panel_graphics(ser, aoostar_screen_id=1, real_sensor_data=None,
 
         if real_sensor_data:
             try:
-                sensor['value'] = real_sensor_data[sensor['label']]
+                delimiters = ['[', ']', '\'']
+                temp_delimiter = ' '
+                for delimiter in delimiters:
+                    sensor['label'] = sensor['label'].replace(delimiter, temp_delimiter)
+                labels = sensor['label'].split(temp_delimiter)
+                curr_sensor_data = real_sensor_data
+                for label in labels:
+                    if not label:
+                        continue
+                    if label.isdigit():
+                        curr_sensor_data = curr_sensor_data[int(label)]
+                    else:
+                        curr_sensor_data = curr_sensor_data[str(label)]
+                sensor['value'] = curr_sensor_data
             except:
-                print(f"Error while:sensor['value'] = real_sensor_data[{sensor['label']}]")
+                print(f"Error while: getting {labels} from real_sensor_data")
 
-        if isinstance(sensor['value'], float):
+        #if isinstance(sensor['value'], float):
+        if sensor['decimalDigits'] == 0:
             sensor['value'] = round(sensor['value'])
+        elif sensor['decimalDigits'] > 0:
+            sensor['value'] = round(sensor['value'],int(sensor['decimalDigits']))
         value = str(sensor['value']) + str(sensor['unit'])
         position = (sensor['x'], sensor['y']) 
 

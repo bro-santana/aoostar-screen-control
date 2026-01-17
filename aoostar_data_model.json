@@ -7,10 +7,8 @@
   "net_ip_address": "",
   "gpu_core": 0,
   "gpu_temperature": 0,
-  "net_upload_speed": 0,
-  "net_upload_speed_unit": "",
-  "net_download_speed": 0,
-  "net_download_speed_unit": "",
+  "net_upload_speed": "",
+  "net_download_speed": "",
   "motherboard_temperature": 0,
   "storage_ssd": [
     {
