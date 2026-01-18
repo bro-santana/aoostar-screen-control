@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="80mm"
+   height="80mm"
+   viewBox="0 0 80 80"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="Gpu_Circle.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.1417558"
+     inkscape:cx="143.57379"
+     inkscape:cy="170.42092"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" /><defs
+     id="defs1" /><g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       id="path1"
+       style="fill:#000000;stroke-width:0.264583"
+       d="M 40.072749,2.7621863 A 37,37 0 0 0 3.0729415,39.761997 37,37 0 0 0 40.072749,76.761807 37,37 0 0 0 77.073075,39.761997 37,37 0 0 0 40.072749,2.7621863 Z M 34.061747,13.632841 h 3.239079 v 6.500378 h 6.499861 v -6.500378 h 3.260783 v 6.500378 h 13.00024 v 12.999728 h 6.499862 v 3.23907 H 60.06171 v 6.49987 h 6.499862 v 3.2613 h -6.478158 v 12.99972 H 47.083691 v 6.49986 h -3.2613 v -6.49986 H 37.32253 v 6.49986 h -3.260783 v -6.47764 h -13.00024 v -13.00024 h -6.499862 v -3.26078 h 6.499862 v -6.49986 h -6.499862 v -3.2613 h 6.499862 V 20.133219 h 13.00024 z" /><g
+       id="g1"
+       transform="matrix(0.22033898,0,0,0.22033898,22.18761,89.50418)"> </g></g></svg>
