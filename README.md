@@ -2,6 +2,39 @@
 
 ### Main functionality : in progress
 
+But use can show one frame of an Aoostar Style panel with:
+```
+aoostar_screen.py panel [-h] [--hwinfo] panel_id [aoostar_internal_data_path]
+
+positional arguments:
+  panel_id              Id of the panel to be displayed
+  aoostar_internal_data_path
+                        Aoostar-X _internal path
+
+options:
+  --hwinfo              Get data from HWiNFO
+```
+Wth fictional data or real data on Windows if you have HWiNFO64 or HWiNFO32 running with the shared memory option enabled. 
+
+Show some custom image with:
+```
+aoostar_screen.py image [-h] path
+
+positional arguments:
+  path        Image path
+
+options:
+  -h, --help  show this help message and exit
+```
+
+Or some simple text with:
+```
+aoostar_screen.py text [-h] content
+
+positional arguments:
+  content     Text to be displayed
+```
+
 The code provided is based on the reverse engineering published by [zehnm/aoostar-rs](https://github.com/zehnm/aoostar-rs).
 
 My tests were made solely on a **GEM12 PRO MAX**.
